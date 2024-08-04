@@ -2,7 +2,7 @@
 
 import {ChangeEvent, memo, useCallback, useMemo, useState} from "react";
 import {FilterCheckbox, FilterCheckboxProps} from "@/shared/components/shared/filter-checkbox";
-import {Input} from "@/shared/components/ui";
+import {Input, Skeleton} from "@/shared/components/ui";
 
 interface CheckboxFiltersGroupProps {
     title: string;
@@ -10,8 +10,11 @@ interface CheckboxFiltersGroupProps {
     defaultItems?: FilterCheckboxProps[];
     limit?: number;
     searchInputPlaceholder?: string;
-    onChange?: (values: string[]) => void;
+    loading?: boolean;
+    onClickCheckbox?: (id: string) => void;
     defaultValue?: string[];
+    selected?: Set<string>;
+    name: string;
     className?: string;
 }
 
@@ -22,8 +25,11 @@ export const CheckboxFiltersGroup = memo((props: CheckboxFiltersGroupProps) => {
         defaultItems,
         limit = 5,
         searchInputPlaceholder = "Поиск...",
-        onChange,
+        loading,
+        onClickCheckbox,
         defaultValue,
+        selected,
+        name,
         className,
     } = props;
 
@@ -34,11 +40,20 @@ export const CheckboxFiltersGroup = memo((props: CheckboxFiltersGroupProps) => {
         setSearchValue(e.target.value);
     }, []);
 
-    const list = useMemo(
-        () => showAll
+    const list = showAll
             ? items.filter(item => item.text.toLowerCase().includes(searchValue.toLowerCase()))
-            : defaultItems?.slice(0, limit),
-        [defaultItems, items, limit, searchValue, showAll]);
+            : (defaultItems || items).slice(0, limit)
+
+    if (loading) {
+        return <div className={className}>
+            <p className={"font-bold mb-3"}>{title}</p>
+
+            {...Array(limit).fill(0).map((_, index) => (
+                <Skeleton key={index} className={"h-6 mb-4 rounded-[8px]"}/>
+            ))}
+            <Skeleton className={"w-28 h-6 mb-4 rounded-[8px]"}/>
+        </div>
+    }
 
     return (
         <div className={className}>
@@ -55,25 +70,26 @@ export const CheckboxFiltersGroup = memo((props: CheckboxFiltersGroupProps) => {
             )}
 
             <div className={"flex flex-col gap-4 max-h-96 overflow-auto scrollbar"}>
-                {list?.map((checkbox, index) => (
+                {list.map((checkbox, index) => (
                     <FilterCheckbox
                         key={index}
                         text={checkbox.text}
                         value={checkbox.value}
+                        name={name}
                         endAdornment={checkbox.endAdornment}
-                        checked={false}
-                        onCheckedChange={(ids) => console.log(ids)}
+                        checked={selected?.has(checkbox.value)}
+                        onCheckedChange={() => onClickCheckbox?.(checkbox.value)}
                     />
                 ))}
             </div>
 
-            {items.length > length && (
+            {items.length > limit && (
                 <div className={showAll ? "border-t border-t-neutral-100 mt-4" : ""}>
                     <button
                         className={"text-primary mt-3"}
                         onClick={() => setShowAll(prev => !prev)}
                     >
-                        {showAll? "Скрыть" : "+ Показать все"}
+                        {showAll ? "Скрыть" : "+ Показать все"}
                     </button>
                 </div>
             )}

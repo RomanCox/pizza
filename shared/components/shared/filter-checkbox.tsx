@@ -8,10 +8,10 @@ export interface FilterCheckboxProps {
     className?: string;
     text: string;
     value: string;
+    name?: string;
     endAdornment?: ReactNode;
     onCheckedChange?: (checked: boolean) => void;
     checked?: boolean;
-    name?: string;
 }
 
 export const FilterCheckbox = memo((props: FilterCheckboxProps) => {
