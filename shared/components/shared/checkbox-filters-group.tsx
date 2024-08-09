@@ -1,6 +1,6 @@
 "use client";
 
-import {ChangeEvent, memo, useCallback, useMemo, useState} from "react";
+import {ChangeEvent, memo, useState} from "react";
 import {FilterCheckbox, FilterCheckboxProps} from "@/shared/components/shared/filter-checkbox";
 import {Input, Skeleton} from "@/shared/components/ui";
 
@@ -36,9 +36,9 @@ export const CheckboxFiltersGroup = memo((props: CheckboxFiltersGroupProps) => {
     const [showAll, setShowAll] = useState<boolean>(false);
     const [searchValue, setSearchValue] = useState<string>("");
 
-    const onChangeSearchInput = useCallback((e: ChangeEvent<HTMLInputElement>) => {
+    const onChangeSearchInput = (e: ChangeEvent<HTMLInputElement>) => {
         setSearchValue(e.target.value);
-    }, []);
+    };
 
     const list = showAll
             ? items.filter(item => item.text.toLowerCase().includes(searchValue.toLowerCase()))
