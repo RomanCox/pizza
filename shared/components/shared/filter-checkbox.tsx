@@ -31,12 +31,12 @@ export const FilterCheckbox = memo((props: FilterCheckboxProps) => {
                 onCheckedChange={onCheckedChange}
                 checked={checked}
                 value={value}
-                className="rounded-[8px] w-6 h-6"
+                className={"rounded-[8px] w-6 h-6"}
                 id={`checkbox-${String(name)}-${String(value)}`}
             />
             <label
                 htmlFor={`checkbox-${String(name)}-${String(value)}`}
-                className="leading-none cursor-pointer flex-1"
+                className={"leading-none cursor-pointer flex-1"}
             >
                 {text}
             </label>

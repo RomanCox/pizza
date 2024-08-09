@@ -46,7 +46,6 @@ export const ProductsGroupList = memo((props: ProductsGroupListProps) => {
 
             <div className={cn("grid grid-cols-3 gap-[50px]", listClassName)}>
                 {items
-                    // .filter(product => product.items.length > 0)
                     .map((product, i) => (
                         <ProductCard
                             key={product.id}

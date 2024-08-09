@@ -21,8 +21,8 @@ export const Header: FC<HeaderProps> = ({ className }) => {
                     <div className={"flex items-center g-4"}>
                         <Image src={"/logo.png"} alt={"logo"} width={35} height={35}/>
                         <div>
-                            <h1 className="text-2xl uppercase font-black">Next Pizza</h1>
-                            <p className="text-sm text-gray-400 leading-3">вкусней уже некуда</p>
+                            <h1 className={"text-2xl uppercase font-black"}>Next Pizza</h1>
+                            <p className={"text-sm text-gray-400 leading-3"}>вкусней уже некуда</p>
                         </div>
                     </div>
                 </Link>
@@ -31,7 +31,7 @@ export const Header: FC<HeaderProps> = ({ className }) => {
                     <SearchInput/>
                 </div>
 
-                <div className="flex items-center gap-3">
+                <div className={"flex items-center gap-3"}>
                     <Button variant={"outline"} className={"flex items-center gap-1"}>
                         <User size={16}/>
                         Войти
@@ -47,7 +47,7 @@ export const Header: FC<HeaderProps> = ({ className }) => {
                             </div>
                             <ArrowRight
                                 size={20}
-                                className="absolute right-5 transition duration-300 -translate-x-2 opacity-0 group-hover:opacity-100 group-hover:translate-x-0"
+                                className={"absolute right-5 transition duration-300 -translate-x-2 opacity-0 group-hover:opacity-100 group-hover:translate-x-0"}
                             />
                         </Button>
                     </div>

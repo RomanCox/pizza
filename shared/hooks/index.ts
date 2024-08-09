@@ -1,3 +1,3 @@
-export {useFilters} from "./useFilters";
-export {useIngredients} from "./useIngredients";
-export {useQueryFilters} from "./useQueryFilters";
+export {useFilters} from "./use-filters";
+export {useIngredients} from "./use-ingredients";
+export {useQueryFilters} from "./use-query-filters";
