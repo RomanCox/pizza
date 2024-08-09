@@ -7,7 +7,7 @@ interface ReturnProps {
     loading: boolean;
 }
 
-export const useIngredients = (values: string[] = []): ReturnProps => {
+export const useIngredients = (): ReturnProps => {
     const [ingredients, setIngredients] = useState<Ingredient[]>([]);
     const [loading, setLoading] = useState<boolean>(false);
 

@@ -18,10 +18,6 @@ export const useQueryFilters = (filters: IFilters) => {
             arrayFormat: 'comma',
         });
 
-        //TODO do this with router.push(`?${query}`, {scroll: false});
-        // const newUrl = `${window.location.pathname}?${query}`;
-        // window.history.replaceState(null, '', newUrl);
-
         router.push(`?${query}`, {scroll: false});
     }, [filters, router]);
 }

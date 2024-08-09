@@ -27,7 +27,6 @@ export const CheckboxFiltersGroup = memo((props: CheckboxFiltersGroupProps) => {
         searchInputPlaceholder = "Поиск...",
         loading,
         onClickCheckbox,
-        defaultValue,
         selected,
         name,
         className,
