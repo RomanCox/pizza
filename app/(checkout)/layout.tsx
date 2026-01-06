@@ -1,4 +1,4 @@
-import { ReactNode } from "react";
+import { ReactNode, Suspense  } from "react";
 import { Metadata } from "next";
 import { Container, Header } from "@/shared/components/shared";
 
@@ -15,7 +15,9 @@ export default function CheckoutLayout({
     return (
         <main className="min-h-screen bg-[#F4F1EE]">
             <Container>
+							<Suspense fallback={null}>
                 <Header className="border-gray-200" hasSearch={false} hasCart={false}/>
+							</Suspense>
                 {children}
             </Container>
         </main>
