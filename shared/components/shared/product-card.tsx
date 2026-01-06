@@ -1,8 +1,10 @@
-import { memo } from "react";
+import { FC } from "react";
 import Link from "next/link";
-import { Title } from "@/shared/components/shared/title";
-import {Button } from "@/shared/components/ui";
 import { Plus } from "lucide-react";
+
+import { Title } from "@/shared/components/shared/title";
+import { Button } from "@/shared/components/ui";
+
 import { Ingredient } from "@prisma/client";
 
 interface ProductCardProps {
@@ -14,7 +16,7 @@ interface ProductCardProps {
     className?: string;
 }
 
-export const ProductCard = memo((props: ProductCardProps) => {
+export const ProductCard: FC<ProductCardProps> = (props) => {
     const {
         id,
         name,
@@ -50,6 +52,4 @@ export const ProductCard = memo((props: ProductCardProps) => {
             </Link>
         </div>
     )
-});
-
-ProductCard.displayName = "ProductCard";
+};

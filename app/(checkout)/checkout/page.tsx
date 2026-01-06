@@ -23,12 +23,12 @@ export default function Checkout() {
     const form = useForm<CheckoutFormValues>({
         resolver: zodResolver(checkoutFormSchema),
         defaultValues: {
-            email: '',
-            firstName: '',
-            lastName: '',
-            phone: '',
-            address: '',
-            comment: '',
+            email: "",
+            firstName: "",
+            lastName: "",
+            phone: "",
+            address: "",
+            comment: "",
         },
     });
 
@@ -38,8 +38,10 @@ export default function Checkout() {
 
             const url = await createOrder(data);
 
-            toast.error('Заказ успешно оформлен! 📝 Переход на оплату... ', {
-                icon: '✅',
+            console.log("url - ", url)
+
+            toast.error("Заказ успешно оформлен! 📝 Переход на оплату... ", {
+                icon: "✅",
             });
 
             if (url) {
@@ -48,14 +50,14 @@ export default function Checkout() {
         } catch (err) {
             console.log(err);
             setSubmitting(false);
-            toast.error('Не удалось создать заказ', {
-                icon: '❌',
+            toast.error("Не удалось создать заказ", {
+                icon: "❌",
             });
         }
     };
 
-    const onClickCountButton = (id: number, quantity: number, type: 'plus' | 'minus') => {
-        const newQuantity = type === 'plus' ? quantity + 1 : quantity - 1;
+    const onClickCountButton = (id: number, quantity: number, type: "plus" | "minus") => {
+        const newQuantity = type === "plus" ? quantity + 1 : quantity - 1;
         updateItemQuantity(id, newQuantity);
     };
 
@@ -89,9 +91,9 @@ export default function Checkout() {
                                 loading={loading}
                             />
 
-                            <CheckoutPersonalForm className={loading ? 'opacity-40 pointer-events-none' : ''}/>
+                            <CheckoutPersonalForm className={loading ? "opacity-40 pointer-events-none" : ""}/>
 
-                            <CheckoutAddressForm className={loading ? 'opacity-40 pointer-events-none' : ''}/>
+                            <CheckoutAddressForm className={loading ? "opacity-40 pointer-events-none" : ""}/>
                         </div>
 
                         <div className="w-[450px]">
